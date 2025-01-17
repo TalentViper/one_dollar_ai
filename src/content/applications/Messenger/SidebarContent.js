@@ -28,6 +28,7 @@ import {
 } from 'src/actions/chatAction';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const RootWrapper = styled(Box)(
   ({ theme }) => `
@@ -79,6 +80,7 @@ function SidebarContent() {
   const dispatch = useDispatch();
   const chatHistory = useSelector((state) => state.chat.chatHistory);
   const activeChatId = useSelector((state) => state.chat.activeChatId);
+  const { t, i18n } = useTranslation();
 
   const [searchValue, setSearchValue] = useState('');
   const [openSearchResults, setOpenSearchResults] = useState(false);
@@ -173,7 +175,7 @@ function SidebarContent() {
           startIcon={<AddIcon />}
           onClick={handleNewChat}
         >
-          New Chat
+          {t('button.new_chat')}
         </Button>
         <SearchInputWrapper
           value={searchValue}
@@ -186,7 +188,7 @@ function SidebarContent() {
               </InputAdornment>
             )
           }}
-          placeholder="Search"
+          placeholder={t('search')}
           fullWidth
         />
         <Box mt={2} 

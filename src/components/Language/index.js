@@ -13,6 +13,7 @@ import {
   MenuItem,
   Switch
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const LanguageWrapper = styled(Box)(
   ({ theme }) => `
@@ -23,9 +24,9 @@ const LanguageWrapper = styled(Box)(
 `
 );
 
-
 function Language() {
   const theme = useTheme();
+  const { t, i18n } = useTranslation();
 
   const [lang, setLang] = useState(1);
   const [checked, setChecked] = useState(true);
@@ -38,6 +39,10 @@ function Language() {
     setChecked(event.target.checked);
   };
 
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language); // Dynamically change the language
+  };
+
   const user = {
     name: 'Catherine Pike',
     email: 'random.dude@random.com',
@@ -48,20 +53,24 @@ function Language() {
     {
       id: 1,
       url: '/static/images/flags/england.png',
-      language: 'English'
+      language: 'English',
+      code: "en"
     },
     {
       id: 2,
       url: '/static/images/flags/china.png',
-      language: '中文'
+      language: '中文',
+      code: "cn"
     }, {
       id: 3,
       url: '/static/images/flags/hongkong.png',
-      language: '繁體中文'
+      language: '繁體中文',
+      code: "hk"
     }, {
       id: 4,
       url: '/static/images/flags/japan.png',
-      language: '日本語'
+      language: '日本語',
+      code: "ja"
     },
 
   ]
@@ -107,6 +116,7 @@ function Language() {
             <MenuItem
               key={index}
               value={item.id}
+              onClick={() => changeLanguage(item.code.toLowerCase())}
             >
               <Avatar
                 sx={{
