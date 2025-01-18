@@ -1,0 +1,35 @@
+{
+   "welcome": "Welcome to the application!",
+   "description": "This is a multi-language React app.",
+   "languages": {
+      "en": "English",
+      "cn": "中文"
+   },
+   "fumanize":"人性化",
+   "new_chat": "新聊天",
+   "search": "搜尋",
+
+   "inviteDscription" : "邀請好友註冊，充值僅需$1, 享200條提示六折優惠 (約5小時 !",
+   "copyLink" : "複製邀請連結",
+   "shareInviteCode" : "或分享邀請碼",
+
+   "settings" : "設定",
+   "gerneral" : "通用",
+   "changePassword" : "修改密碼",
+   "enterInviteCode" : "輸入邀請碼",
+   "currentPassword" : "當前密碼",
+   "newPassword" : "新密碼",
+   "confirmPassword" : "確認密碼",
+   "enterInviteCodeDescription" : "下次充值享5小時六折優惠 !",
+   "appleCode" : "套用代碼",
+    
+   "signIn" : "登入",
+   "signUp" : "註冊",
+   "createAnAccount" : "建立帳戶",
+   "continue" : "繼續",
+   "continueWithGoogle" : " 使用 Google 繼續",
+   "continueWithMicrosoft" : "Continue with Microsoft Account",
+   "continueWithApple" : "Continue with Apple",
+   "haveNotAccount" : " 沒有帳戶？",
+   "haveAccount" : "已有帳戶？"
+}

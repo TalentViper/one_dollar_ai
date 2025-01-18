@@ -1,0 +1,35 @@
+{
+   "welcome": "Welcome to the application!",
+   "description": "This is a multi-language React app.",
+   "languages": {
+      "en": "English",
+      "cn": "中文"
+   },
+
+   "fumanize" : "Humanize",
+   "new_chat": "New Chat",
+   "search": "Search",
+   "inviteDscription" : "Invite your friends to sign up, top up just $1, and get 60% off 200 prompts (equivalent to about 5 hours)!",
+   "copyLink" : "Copy invite Link",
+   "shareInviteCode" : "Or Share Invite Code",
+
+   "settings" : "Settings",
+   "gerneral" : "General",
+   "changePassword" : "Change Password",
+   "enterInviteCode" : "Enter Invite Code",
+   "currentPassword" : "Current Password",
+   "newPassword" : "New Password",
+   "confirmPassword" : "Confirm Password",
+   "enterInviteCodeDescription" : "Enter your invite code to get 60% off 5 hours on your next top up!",
+   "appleCode" : "Apple Code",
+    
+   "signIn" : "Sign In",
+   "signUp" : "Sign Up",
+   "createAnAccount" : "Create an account",
+   "continue" : "Continue",
+   "continueWithGoogle" : "Continue With Google",
+   "continueWithMicrosoft" : "Continue with Microsoft Account",
+   "continueWithApple" : "Continue with Apple",
+   "haveNotAccount" : "Don't have an account?",
+   "haveAccount" : "Already have an account?"
+}

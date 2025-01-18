@@ -175,7 +175,7 @@ function SidebarContent() {
           startIcon={<AddIcon />}
           onClick={handleNewChat}
         >
-          {t('button.new_chat')}
+          {t('new_chat')}
         </Button>
         <SearchInputWrapper
           value={searchValue}
