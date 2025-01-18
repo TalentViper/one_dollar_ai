@@ -5,63 +5,22 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  Typography
+  Typography,
+  Button,
+  Avatar,
+  Divider ,
+  ListItemIcon,
+  Select
 } from '@mui/material';
 import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 
-const ListWrapper = styled(Box)(
-  ({ theme }) => `
-        .MuiTouchRipple-root {
-            display: none;
-        }
-        
-        .MuiListItem-root {
-            transition: ${theme.transitions.create(['color', 'fill'])};
-            
-            &.MuiListItem-indicators {
-                padding: ${theme.spacing(1, 2)};
-            
-                .MuiListItemText-root {
-                    .MuiTypography-root {
-                        &:before {
-                            height: 4px;
-                            width: 22px;
-                            opacity: 0;
-                            visibility: hidden;
-                            display: block;
-                            position: absolute;
-                            bottom: -10px;
-                            transition: all .2s;
-                            border-radius: ${theme.general.borderRadiusLg};
-                            content: "";
-                            background: ${theme.colors.primary.main};
-                        }
-                    }
-                }
-
-                &.active,
-                &:active,
-                &:hover {
-                
-                    background: transparent;
-                
-                    .MuiListItemText-root {
-                        .MuiTypography-root {
-                            &:before {
-                                opacity: 1;
-                                visibility: visible;
-                                bottom: 0px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-`
-);
 
 const user = {
   signed: true,
@@ -80,40 +39,42 @@ function HeaderMenu() {
     setOpen(false);
   };
 
+  const handleChange = (event) => {
+    // setLang(event.target.value);
+  };
+
   return (
     <>
-      <ListWrapper
+      <Button 
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <List disablePadding component={Box} display="flex">
-          <ListItem
-            classes={{ root: 'MuiListItem-indicators' }}
-            button
-            ref={ref}
-            onClick={handleOpen}
-          >
-            <ListItemText
-              primaryTypographyProps={{ noWrap: true }}
-              primary={
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  color="black"
-                // marginBottom={2}
-                >
-                  <span style={{ fontSize: 20 }}>ChatGPT 4o</span>
-                  <Box display="flex" alignItems="center" pl={0.3}>
-                    <ExpandMoreTwoToneIcon fontSize="small" />
-                  </Box>
-                </Box>
-              }
-            />
-          </ListItem>
-        </List>
-      </ListWrapper>
+          display:'block',
+          color:'#265A9E',
+          lineHeight:'18px',
+          ml: {
+            xs: '0px',
+            md: '20px',
+          },
+          padding: {
+            xs: '0px 0px 0px 0px !important',
+            md: '7px 10px !important',
+          },
+          }}
+          ref={ref}
+          // endIcon={<KeyboardArrowDownIcon/>}
+          onClick={handleOpen}
+        >
+         <Box
+          display="flex"
+          alignItems="center"
+          color="black"
+        // marginBottom={2}
+        >
+          <span style={{ fontSize: 20, fontWeight:'400' }}>ChatGPT 4o</span>
+          <Box display="flex" alignItems="center" pl={0.3}>
+            <ExpandMoreTwoToneIcon fontSize="small" />
+          </Box>
+        </Box>
+      </Button>
       <Menu
         anchorEl={ref.current}
         MenuListProps={{
@@ -129,6 +90,70 @@ function HeaderMenu() {
         {/* <MenuItem sx={{ px: 3 }} component={NavLink} to="/components/cards"> */}
         <MenuItem sx={{ px: 3 }} component={NavLink} to="#">
           Baidu
+        </MenuItem>
+      </Menu>
+      <Menu
+        anchorEl={ref.current}
+        sx={{marginTop:'15px'}}
+        id="account-menu"
+        open={isOpen}
+        onClose={handleClose}
+        onClick={handleClose}
+        slotProps={{
+          paper: {
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              mt: 1.5,
+              '& .MuiAvatar-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              '&::before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                zIndex: 0,
+              },
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem onClick={handleClose}>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
         </MenuItem>
       </Menu>
     </>

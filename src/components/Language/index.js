@@ -40,7 +40,8 @@ function Language() {
   };
 
   const changeLanguage = (language) => {
-    i18n.changeLanguage(language); // Dynamically change the language
+    console.log("language", language);
+    i18n.changeLanguage(language);
   };
 
   const user = {
@@ -132,14 +133,14 @@ function Language() {
         })}
       </Select>
       <Box mb={3} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography fontSize={16} fontWeight={400} sx={{ color: 'black', ml: 1 }}>Humanize</Typography>
+        <Typography fontSize={16} fontWeight={400} sx={{ color: 'black', ml: 1 }}>{t('fumanize')}</Typography>
         <Switch
           sx={{
-            padding:0,
-            width:44,
-            height:22,
+            padding: 0,
+            width: 44,
+            height: 22,
             '& .MuiSwitch-switchBase': {
-              padding:'1px',
+              padding: '1px',
               '&.Mui-checked': {
                 color: '#fff',
                 '& + .MuiSwitch-track': {
@@ -149,7 +150,7 @@ function Language() {
               },
             },
             '& .MuiSwitch-thumb': {
-              padding:0,
+              padding: 0,
               boxShadow: 'none',
             },
             '& .MuiSwitch-track': {

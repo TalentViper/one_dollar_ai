@@ -25,10 +25,12 @@ import {
   Paper,
   ListItemText,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 
 
 function InviteButton() {
+  const { t, i18n } = useTranslation();
   const ref = useRef(null);
   const [isOpen, setOpen] = useState(false);
 
@@ -71,13 +73,16 @@ function InviteButton() {
       <Button 
         sx={{
           display:'block',
+          width: '130px',
+          color:'#265A9E',
+          lineHeight:'18px',
           ml: {
             xs: '0px',
             md: '20px',
           },
           padding: {
             xs: '0px 0px 0px 0px !important',
-            md: '5px 18px !important',
+            md: '7px 10px !important',
           },
           borderRadius: '20px',
           border: {
@@ -88,14 +93,8 @@ function InviteButton() {
           ref={ref}
           onClick={handleOpen}
         >
-        <Typography fontWeight={700} fontSize={14} sx={{ color: '#265A9E' }} component="div" >
-          Invite a friend
-        </Typography>
-        <Box display='flex' justifyContent='center'>
-          <Typography fontWeight={700} fontSize={14} lineHeight={1.2}>
-            <span style={{ color: '#265A9E' }}>Get</span> &nbsp;<span style={{ color: '#378DFD' }}>60% off</span>
-          </Typography>
-        </Box>
+          Invite a friend<br/>
+        <span style={{color:'#378DFD'}}>60% off</span>
       </Button>
 
       <Dialog
@@ -111,11 +110,11 @@ function InviteButton() {
           }}>
           <DialogContentText id="alert-dialog-description" sx={{ color: 'black' }}>
             <Typography color="black" variant="subtitle1" mb={1}>
-              Invite your friends to sign up, top up just $1, and get 60% off 200 prompts (equivalent to about 5 hours)!
+            {t('inviteDscription')}
             </Typography>
           </DialogContentText>
           <Box mb={2}>
-            <Typography fontSize={14} fontWeight={400} color="#83848C" mb={1} >Copy invite Link</Typography>
+            <Typography fontSize={14} fontWeight={400} color="#83848C" mb={1} >{t('copyLink')}</Typography>
             <Paper
               component="form"
               sx={{p: '0px 4px', color:'black', display: 'flex', alignItems: 'center', borderColor:"black !important", borderRadius:0}}
@@ -135,7 +134,7 @@ function InviteButton() {
             </Paper>
           </Box>
           <Box>
-            <Typography fontSize={14} fontWeight={400} color="#83848C" mb={1} >Or Share Invite Code</Typography>
+            <Typography fontSize={14} fontWeight={400} color="#83848C" mb={1} >{t('shareInviteCode')}</Typography>
             <Paper
               component="form"
               sx={{p: '0px 4px', color:'black', display: 'flex', alignItems: 'center', borderColor:"black !important", borderRadius:0}}

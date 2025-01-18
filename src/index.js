@@ -19,7 +19,7 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
@@ -35,17 +35,6 @@ root.render(
     </SidebarProvider>
   </HelmetProvider>
 );
-// ReactDOM.render(
-//   <HelmetProvider>
-//     <SidebarProvider>
-//       <BrowserRouter>
-//         <Provider store={store}>
-//           <App />
-//         </Provider>
-//       </BrowserRouter>
-//     </SidebarProvider>
-//   </HelmetProvider>,
-//   document.getElementById('root')
-// );
+
 
 serviceWorker.unregister();
