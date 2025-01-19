@@ -6,6 +6,7 @@ import TopBarContent from './TopBarContent';
 import BottomBarContent from './BottomBarContent';
 import SidebarContent from './SidebarContent';
 import ChatContent from './ChatContent';
+import DragFileUpload from './DragFilUpload';
 import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
 
 import Scrollbar from 'src/components/Scrollbar';
@@ -81,15 +82,36 @@ function ApplicationsMessenger() {
     setMobileOpen(!mobileOpen);
   };
 
+    const [isDragging, setIsDragging] = useState(false);
+    const [file, setFile] = useState(null);
+  
+    const handleDragOver = (e) => {
+      e.preventDefault();
+      setIsDragging(true);
+    };
+  
+    const handleDragLeave = () => {
+      setIsDragging(false);
+    };
+  
+    const handleDrop = (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        setFile(file);
+      }
+      setIsDragging(false);
+    };
+
   return (
     <>
       <Helmet>
         <title>OneDollarAI</title>
       </Helmet>
       <RootWrapper className="Mui-FixedWrapper">
-        {/* <DrawerWrapperMobile
+        <DrawerWrapperMobile
           sx={{
-            display: { lg: 'none', xs: 'inline-block' }
+            display: { lg: 'block', xs: 'inline-block' }
           }}
           variant="temporary"
           anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -99,7 +121,7 @@ function ApplicationsMessenger() {
           <Scrollbar>
             <SidebarContent />
           </Scrollbar>
-        </DrawerWrapperMobile> */}
+        </DrawerWrapperMobile>
         <Sidebar
           sx={{
             display: { xs: 'none', lg: 'inline-block' }
@@ -112,18 +134,25 @@ function ApplicationsMessenger() {
         <ChatWindow>
           <Box flex={1}
             sx={{
+                position:'relative',
                 padding:{
                     xs:'50px 0px 0px 0px !important',
                     md:'0px 0px 0px 0px !important'
                 }
             }}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
             >
+              {isDragging && (
+                <DragFileUpload />
+              )}
             <Scrollbar>
               <ChatContent />
             </Scrollbar>
           </Box>
           <Divider />
-          <BottomBarContent />
+          <BottomBarContent  file={file} />
         </ChatWindow>
       </RootWrapper>
     </>
