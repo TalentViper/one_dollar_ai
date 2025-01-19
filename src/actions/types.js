@@ -3,3 +3,7 @@ export const ADD_SUB_MESSAGE = 'ADD_SUB_MESSAGE';
 export const SET_ACTIVECHAT_ID = 'SET_CHAT_ID';
 export const SET_INCREASE_CHAT_ID = 'SET_INCREASE_CHAT_ID';
 export const DELETE_CHAT = 'DELETE_CHAT';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT = 'LOGOUT';

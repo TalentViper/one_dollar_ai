@@ -22,7 +22,7 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import * as Yup from 'yup';
-import { he } from 'date-fns/locale';
+import { useAuth } from 'src/contexts/AuthContext';
 
 const UserBoxWrapper = styled(Box)(
   ({ theme }) => `
@@ -34,15 +34,15 @@ const UserBoxWrapper = styled(Box)(
 `
 );
 
-const user = {
+const default_user = {
   name: 'Catherine Pike',
   email: 'random.dude@random.com',
   avatar: '/static/images/avatars/4.jpg'
 };
-
-
 export default function UserBox() {
   const dispatch = useDispatch();
+  const { user } = useAuth();
+  
   const ref = useRef(null);
   const [isOpen, setOpen] = useState(false);
   const [value, setValue] = React.useState(1);
@@ -93,12 +93,12 @@ export default function UserBox() {
             height: 50,
             borderRadius: '50%',
           }}
-          alt={user.name}
-          src={user.avatar}
+          alt={user?.first_name}
+          src={user?.avatar || user?.picture || default_user.avatar}
         />}>
         <div>
-          <Typography sx={{ textAlign: 'left', color: 'black' }} fontSize={16} fontWeight={600}>{user.name}</Typography>
-          <Typography sx={{ textAlign: 'left', color: '#747778' }} fontSize={12} fontWeight={400}>{user.email}</Typography>
+          <Typography sx={{ textAlign: 'left', color: 'black' }} fontSize={16} fontWeight={600}>{user?.first_name ? (user?.first_name + " " + user?.last_name) : default_user.name}</Typography>
+          <Typography sx={{ textAlign: 'left', color: '#747778' }} fontSize={12} fontWeight={400}>{user?.email || default_user.email}</Typography>
         </div>
       </Button>
 

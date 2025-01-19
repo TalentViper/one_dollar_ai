@@ -1,46 +1,26 @@
-import { useCallback, forwardRef, useState } from 'react';
+import { useState } from 'react';
 import {
-   Avatar,
-   Link,
    Box,
    Button,
-   Divider,
-   IconButton,
-   InputAdornment,
-   lighten,
-   List,
-   ListItem,
-   ListItemAvatar,
    TextField,
-   Tooltip,
    Typography,
-   Dialog,
-   DialogContent,
-   DialogContentText,
-   DialogTitle,
-   Slide,
-   Fade,
-   Hidden
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-
 
 import { useDispatch } from 'react-redux';
 
-import { userSignUp } from 'src/actions/authAction';
+import { useAuth } from "src/contexts/AuthContext";
 
 
-function SignUp() {
-
+function SignUp(props) {
+   const { registerUser } = useAuth()
    const dispatch = useDispatch();
    // Validation schema using Yup
    const validationSchema = Yup.object().shape({
-      firstName: Yup.string().required('First Name is required'),
-      lastName: Yup.string().required('Last Name is required'),
+      first_name: Yup.string().required('First Name is required'),
+      last_name: Yup.string().required('Last Name is required'),
       email: Yup.string()
          .email('Invalid email address')
          .required('Email is required'),
@@ -50,15 +30,18 @@ function SignUp() {
    });
 
    const handleSubmit = async (values) => {
-      console.log('Form submitted successfully:', values);
-      dispatch(userSignUp(values));
+      registerUser(values).then((res) => {
+         if (res) {
+            props.switchSignpage()
+         }
+      })
    };
 
    return (
       <Box >
          <Typography mb={1} fontWeight={700} fontSize={24} sx={{ color: '#2d333a' }}>Create an Account</Typography>
          <Formik
-            initialValues={{ email: '', password: '', firstName: '', lastName : '' }}
+            initialValues={{ email: '', password: '', first_name: '', last_name : '' }}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
          >
@@ -67,13 +50,13 @@ function SignUp() {
                   <Field
                      size="small"
                      as={TextField}
-                     name="firstName"
+                     name="first_name"
                      label="First Name"
                      fullWidth
                      onChange={handleChange}
                      onBlur={handleBlur}
-                     error={Boolean(<ErrorMessage name="firstName" />)}
-                     helperText={<ErrorMessage name="firstName" />}
+                     error={Boolean(<ErrorMessage name="first_name" />)}
+                     helperText={<ErrorMessage name="first_name" />}
                      InputLabelProps={{
                         sx: {
                            color: '#2d333a !important', // Change label color
@@ -116,13 +99,13 @@ function SignUp() {
                   <Field
                      size="small"
                      as={TextField}
-                     name="lastName"
+                     name="last_name"
                      label="Last Name"
                      fullWidth
                      onChange={handleChange}
                      onBlur={handleBlur}
-                     error={Boolean(<ErrorMessage name="lastName" />)}
-                     helperText={<ErrorMessage name="lastName" />}
+                     error={Boolean(<ErrorMessage name="last_name" />)}
+                     helperText={<ErrorMessage name="last_name" />}
                      InputLabelProps={{
                         sx: {
                            color: '#2d333a !important', // Change label color

@@ -25,7 +25,6 @@ const LanguageWrapper = styled(Box)(
 );
 
 function Language() {
-  const theme = useTheme();
   const { t, i18n } = useTranslation();
 
   const [lang, setLang] = useState(1);
@@ -40,14 +39,7 @@ function Language() {
   };
 
   const changeLanguage = (language) => {
-    console.log("language", language);
     i18n.changeLanguage(language);
-  };
-
-  const user = {
-    name: 'Catherine Pike',
-    email: 'random.dude@random.com',
-    avatar: '/static/images/avatars/4.jpg'
   };
 
   const flags = [
