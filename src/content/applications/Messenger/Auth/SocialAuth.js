@@ -9,8 +9,8 @@ import { useDispatch } from 'react-redux';
 import {
   LoginSocialGoogle,
 } from "reactjs-social-login";
+import { useAuth } from "src/contexts/AuthContext"
 
-import { login } from "src/services/authService"
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE
@@ -21,9 +21,10 @@ const googleAppID = process.env.REACT_APP_GG_APP_ID;
 function Auth(props) {
 
   const dispatch = useDispatch();
+  const { socialLogin } = useAuth();
 
   const handleSuccess = async ({provider, data}) => {
-    let response = await login(provider, data.access_token)
+    let response = await socialLogin(provider, data.access_token)
     if (response.success) {
       dispatch({
         type: LOGIN_SUCCESS,
