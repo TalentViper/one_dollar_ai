@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
-  Tooltip,
-  Badge,
-  tooltipClasses,
   styled,
   useTheme,
   Avatar,
-  Button,
   Typography,
   Select,
   MenuItem,
   Switch
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { toogleLanguage, setLanguage } from 'src/actions/settingAction';
 
 const LanguageWrapper = styled(Box)(
   ({ theme }) => `
@@ -25,6 +24,9 @@ const LanguageWrapper = styled(Box)(
 );
 
 function Language() {
+  const dispatch = useDispatch();
+  const isToogle = useSelector((state) => state.setting.toogleLanguage);
+  const currentLang = useSelector((state) => state.setting.language);
   const theme = useTheme();
   const { t, i18n } = useTranslation();
 
@@ -37,17 +39,12 @@ function Language() {
 
   const toogleSwitch = (event) => {
     setChecked(event.target.checked);
+    dispatch(toogleLanguage(event.target.checked));
   };
 
   const changeLanguage = (language) => {
-    console.log("language", language);
+    dispatch(setLanguage(language));
     i18n.changeLanguage(language);
-  };
-
-  const user = {
-    name: 'Catherine Pike',
-    email: 'random.dude@random.com',
-    avatar: '/static/images/avatars/4.jpg'
   };
 
   const flags = [
@@ -76,6 +73,12 @@ function Language() {
 
   ]
 
+  useEffect(() => {
+    setChecked(isToogle);
+    setLang(currentLang);
+    i18n.changeLanguage(currentLang);
+  }, [lang]);
+
   return (
     <LanguageWrapper >
       <Typography sx={{
@@ -87,6 +90,7 @@ function Language() {
         fontSize={16}
       >Language:</Typography>
       <Select
+        disabled={!isToogle}
         sx={{
           width: '100%',
           mb: 0.5,
@@ -116,7 +120,7 @@ function Language() {
           return (
             <MenuItem
               key={index}
-              value={item.id}
+              value={item.code}
               onClick={() => changeLanguage(item.code.toLowerCase())}
             >
               <Avatar
@@ -155,11 +159,11 @@ function Language() {
             },
             '& .MuiSwitch-track': {
               borderRadius: 16,
-              backgroundColor: '#e0e0e0',
+              backgroundColor: '#939292',
               opacity: 1,
             },
           }}
-          checked={checked}
+          checked={isToogle}
           onChange={toogleSwitch}
           inputProps={{ 'aria-label': 'controlled' }}
         />
