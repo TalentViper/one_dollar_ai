@@ -1,44 +1,19 @@
-import { useCallback, forwardRef, useState } from 'react';
+import { useState } from 'react';
 import {
-   Avatar,
-   Link,
-   Box,
    Button,
-   Divider,
-   IconButton,
-   InputAdornment,
-   lighten,
-   List,
-   ListItem,
-   ListItemAvatar,
    TextField,
-   Tooltip,
    Typography,
-   Dialog,
-   DialogContent,
-   DialogContentText,
-   DialogTitle,
-   Slide,
-   Fade,
-   Hidden
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+
+import { useAuth } from 'src/contexts/AuthContext';
 
 
-import { useDispatch } from 'react-redux';
+function SignIn(props) {
 
-import { userSignIn } from 'src/actions/authAction';
-
-const REDIRECT_URI = window.location.href;
-
-
-function SignIn() {
-
-   const dispatch = useDispatch();
+   const { loginUser } = useAuth();
 
    const validationSchema = Yup.object().shape({
       email: Yup.string()
@@ -50,8 +25,11 @@ function SignIn() {
    });
 
    const handleSubmit = async (values) => {
-      console.log('Form submitted successfully:', values);
-      dispatch(userSignIn(values));
+      loginUser(values.email, values.password).then(res => {
+         if (res) {
+            props.modalClose();
+         }
+      });
    };
 
    return (
@@ -168,7 +146,7 @@ function SignIn() {
                      variant="contained"
                      sx={{ background: '#10a37f', width: '100%', mb: 2, color: 'white' }}
                   >
-                     Continue
+                     Sing In
                   </Button>
                </Form>
             )}

@@ -7,11 +7,11 @@ import SidebarLayout from 'src/layouts/SidebarLayout';
 import SuspenseLoader from 'src/components/SuspenseLoader';
 
 const Loader = (Component) => (props) =>
-  (
+(
     <Suspense fallback={<SuspenseLoader />}>
       <Component {...props} />
     </Suspense>
-  );
+);
 
 // Applications
 

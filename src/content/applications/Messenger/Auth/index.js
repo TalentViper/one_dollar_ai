@@ -1,36 +1,12 @@
-import { useCallback, forwardRef, useState } from 'react';
+import { useState } from 'react';
 import {
-  Avatar,
-  Link,
   Box,
   Button,
   Divider,
-  IconButton,
-  InputAdornment,
-  lighten,
-  List,
-  ListItem,
-  ListItemAvatar,
-  TextField,
-  Tooltip,
   Typography,
   Dialog,
   DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Slide,
-  Fade,
-  Hidden
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
-
-import { useDispatch } from 'react-redux';
-
-import {
-  LoginSocialGoogle,
-  LoginSocialMicrosoft,
-  LoginSocialApple
-} from "reactjs-social-login";
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -38,21 +14,17 @@ import Social from './SocialAuth';
 
 function Auth() {
 
-  const dispatch = useDispatch();
-
   const [open, setOpen] = useState(false);
 
   const [isSignIn, setIsSignIn] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
+    setIsSignIn(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setTimeout(() => {
-      setIsSignIn(true);
-    }, 500);
   }
 
   return (
@@ -90,7 +62,7 @@ function Auth() {
           </Box>
           {isSignIn ? (
             <>
-              <SignIn />
+              <SignIn modalClose={handleClose} />
               <Box sx={{ display: 'flex', mb: 2, justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="body2">
                   Don't have an account?
@@ -107,7 +79,7 @@ function Auth() {
             </>
           ) : (
             <>
-              <SignUp />
+              <SignUp switchSignpage={setIsSignIn} />
               <Box sx={{ display: 'flex', mb: 2, justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="body2">
                   Already have an account?
@@ -124,14 +96,8 @@ function Auth() {
             </>
           )}
           <Divider sx={{ borderColor: 'red !important', mb: 2 }}>OR</Divider>
-          {/* <GoogleOAuthProvider clientId={googleApiKey}>
-            <GoogleLogin
-              onSuccess={handleLoginSuccess}
-              onError={handleLoginFailure}
-              buttonText="Continue with Google"
-            />
-          </GoogleOAuthProvider> */}
-          <Social />
+
+          <Social isSignIn={isSignIn} modalClose={handleClose} />
         </DialogContent>
       </Dialog>
     </>
