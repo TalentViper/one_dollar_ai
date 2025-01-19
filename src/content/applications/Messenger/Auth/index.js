@@ -11,9 +11,10 @@ import {
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Social from './SocialAuth';
+import { useAuth } from 'src/contexts/AuthContext';
 
 function Auth() {
-
+  const { user, logoutUser } = useAuth(); 
   const [open, setOpen] = useState(false);
 
   const [isSignIn, setIsSignIn] = useState(true);
@@ -29,16 +30,31 @@ function Auth() {
 
   return (
     <>
-      <Button
-        onClick={handleClickOpen}
-        sx={{
-          background: '#265A9E',
-          color: 'white',
-        }}
-        fullWidth
-        variant="contained" color='primary' size='medium'>
-        Sign In
-      </Button>
+      {
+        user ? (
+          <Button
+            onClick={logoutUser}
+            sx={{
+              background: '#265A9E',
+              color: 'white',
+            }}
+            fullWidth
+            variant="contained" color='primary' size='medium'>
+            Logout
+          </Button>
+        ) : (
+          <Button
+            onClick={handleClickOpen}
+            sx={{
+              background: '#265A9E',
+              color: 'white',
+            }}
+            fullWidth
+            variant="contained" color='primary' size='medium'>
+            Sign In
+          </Button>
+        )
+      }
 
       <Dialog
         maxWidth='xs'

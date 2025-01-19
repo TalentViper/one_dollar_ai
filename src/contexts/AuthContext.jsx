@@ -129,7 +129,43 @@ export const AuthProvider = ({ children }) => {
             timerProgressBar: true,
             showConfirmButton: false
         });
-        window.location.reload();
+        window.location.href="api/auth/logout"
+    };
+
+    const socialLogin = async (provider, access_token) => {
+    
+        try {
+            const res = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/api/auth/social/sign/`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json'
+                    },
+                    body: JSON.stringify({
+                        provider,
+                        access_token
+                    })
+                }
+            )
+            const jsson = await res.json();
+            if (res.status !== 200) {
+                return { success: false, message: res.error, data: null };
+            }
+            if (jsson.access) {
+                setAuthTokens(jsson.access)
+                setRefreshToken(jsson.refresh)
+                setUser(jsson.data)
+                localStorage.setItem('access', jsson.access);
+                localStorage.setItem('refresh', jsson.refresh);
+                localStorage.setItem('user', JSON.stringify(jsson.data))
+            }
+            return { success: true, message: "success", data: jsson };
+        } catch (err) {
+            console.log(err);
+            return { success: false, message: err.message, data: null };
+        }
     };
 
     useEffect(() => {
@@ -137,7 +173,6 @@ export const AuthProvider = ({ children }) => {
             if (refreshToken) { 
                 await getNewAccessTokenWithRefreshToken(refreshToken).then((res) => {
                     if (!res) return logoutUser()
-                    console.log('getNewAccessTokenWithRefreshToken => ', jwtDecode(res.access), jwtDecode(res.refresh));
                     localStorage.setItem("access", (res.access));
                     localStorage.setItem("refresh", (res.refresh));
                 })
@@ -149,7 +184,7 @@ export const AuthProvider = ({ children }) => {
     }, [refreshToken]);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, authTokens, setAuthTokens, registerUser, loginUser, logoutUser }}>
+        <AuthContext.Provider value={{ user, setUser, socialLogin, authTokens, setAuthTokens, registerUser, loginUser, logoutUser }}>
             {loading ? null : children}
         </AuthContext.Provider>
     );
