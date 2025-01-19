@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
   Box,
-  Tooltip,
-  Badge,
-  tooltipClasses,
   styled,
   useTheme,
   Avatar,
-  Button,
   Typography,
   Select,
   MenuItem,
@@ -16,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {toogleLanguage, setLanguage} from 'src/actions/settingAction';
+import { toogleLanguage, setLanguage } from 'src/actions/settingAction';
 
 const LanguageWrapper = styled(Box)(
   ({ theme }) => `
@@ -28,13 +24,10 @@ const LanguageWrapper = styled(Box)(
 );
 
 function Language() {
-<<<<<<< Updated upstream
-=======
   const dispatch = useDispatch();
   const isToogle = useSelector((state) => state.setting.toogleLanguage);
   const currentLang = useSelector((state) => state.setting.language);
   const theme = useTheme();
->>>>>>> Stashed changes
   const { t, i18n } = useTranslation();
 
   const [lang, setLang] = useState(1);
@@ -50,11 +43,7 @@ function Language() {
   };
 
   const changeLanguage = (language) => {
-<<<<<<< Updated upstream
-=======
     dispatch(setLanguage(language));
-    console.log("language", language);
->>>>>>> Stashed changes
     i18n.changeLanguage(language);
   };
 
