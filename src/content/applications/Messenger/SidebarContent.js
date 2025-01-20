@@ -61,14 +61,16 @@ const ListItemWrapper = styled(ListItemButton)(
 
 const SearchInputWrapper = styled(TextField)(
   ({ theme }) => `
-    background:#D9D9D9;
+    background:rgb(172, 172, 172);
     border-radius:10px;
+    color : black;
 
     .MuiInputBase-input {
         border-radius:0 10px 10px 0 ;
         color:black;
         font-size: ${theme.typography.pxToRem(17)};
-        background: #D9D9D9;
+        background:rgb(172, 172, 172);
+        color : black;
         padding-top:5px;
         padding-bottom:5px;
     }
@@ -181,10 +183,11 @@ function SidebarContent() {
           value={searchValue}
           autoFocus
           onChange={handleSearchChange}
+          sx={{color : 'black'}}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchTwoToneIcon />
+                <SearchTwoToneIcon sx={{color : "black"}}  />
               </InputAdornment>
             )
           }}

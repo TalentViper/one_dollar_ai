@@ -25,6 +25,7 @@
     
    "signIn" : "登录",
    "signUp" : "注册",
+   "logOut" : "登出",
    "createAnAccount" : "创建账户 ",
    "continue" : "继续",
    "continueWithGoogle" : "使用 Google 继续",

@@ -43,7 +43,7 @@ function Auth() {
             }}
             fullWidth
             variant="contained" color='primary' size='medium'>
-            Logout
+            {t('logOut')}
           </Button>
         ) : (
           <Button
@@ -69,7 +69,7 @@ function Auth() {
           sx={{
             background: 'white',
             padding: 3,
-            width: 400,
+            maxWidth: 400,
           }}>
           <Box display="flex" justifyContent='center'>
             <Typography fontWeight={700} fontSize={30} sx={{ color: '#265A9E' }}>

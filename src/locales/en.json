@@ -26,11 +26,19 @@
     
    "signIn" : "Sign In",
    "signUp" : "Sign Up",
+   "logOut" : "Log Out",
    "createAnAccount" : "Create an account",
    "continue" : "Continue",
    "continueWithGoogle" : "Continue With Google",
    "continueWithMicrosoft" : "Continue with Microsoft Account",
    "continueWithApple" : "Continue with Apple",
    "haveNotAccount" : "Don't have an account?",
-   "haveAccount" : "Already have an account?"
+   "haveAccount" : "Already have an account?",
+
+   "firstName" : "First Name",
+   "lastName" : "Last Name",
+   "emailAddress" : "Email Address",
+   "password" : "Password",
+   "or" : "Or"
+   
 }

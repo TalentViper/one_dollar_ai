@@ -26,6 +26,7 @@
     
    "signIn" : "登入",
    "signUp" : "註冊",
+   "logOut" : "登出",
    "createAnAccount" : "建立帳戶",
    "continue" : "繼續",
    "continueWithGoogle" : " 使用 Google 繼續",

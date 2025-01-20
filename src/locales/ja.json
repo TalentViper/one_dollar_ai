@@ -25,6 +25,7 @@
      
    "signIn" : "ログイン",
    "signUp" : "登録",
+   "logOut" : "ログアウト",
    "createAnAccount" : "アカウント作成",
    "continue" : "続ける",
    "continueWithGoogle" : "Googleで続ける",
