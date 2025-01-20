@@ -29,7 +29,7 @@ i18n
     },
     supportedLngs: ['en', 'cn', 'hk', 'ja'], // List of supported languages
     fallbackLng: 'en', // Fallback language if detection fails
-    lng: "en",
+    lng: "cn",
     debug: true, // Enable debug mode in development
     interpolation: {
       escapeValue: false, // React already escapes by default
