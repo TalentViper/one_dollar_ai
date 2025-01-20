@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import {
   LoginSocialGoogle,
 } from "reactjs-social-login";
+import { useTranslation } from 'react-i18next';
 import { useAuth } from "src/contexts/AuthContext"
 
 import {
@@ -22,6 +23,7 @@ function Auth(props) {
 
   const dispatch = useDispatch();
   const { socialLogin } = useAuth();
+  const { t, i18n } = useTranslation();
 
   const handleSuccess = async ({provider, data}) => {
     let response = await socialLogin(provider, data.access_token)
@@ -64,9 +66,9 @@ function Auth(props) {
                 height: 26
               }}
               alt='apple'
-              src='/static/images/logos/google-logo.svg'
+              src='/static/images/logo/google.svg'
             />
-            <Typography sx={{ flex: 1, color: 'black' }}>Continue with Google</Typography>
+            <Typography sx={{ flex: 1, color: 'black' }}>{t('continueWithGoogle')}</Typography>
           </Button>
         </LoginSocialGoogle>
       </Box>

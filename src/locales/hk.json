@@ -21,7 +21,8 @@
    "newPassword" : "新密碼",
    "confirmPassword" : "確認密碼",
    "enterInviteCodeDescription" : "下次充值享5小時六折優惠 !",
-   "appleCode" : "套用代碼",
+   "inviteCode" : "邀請碼",
+   "applyCode" : "套用代碼",
     
    "signIn" : "登入",
    "signUp" : "註冊",
@@ -31,5 +32,11 @@
    "continueWithMicrosoft" : "Continue with Microsoft Account",
    "continueWithApple" : "Continue with Apple",
    "haveNotAccount" : " 沒有帳戶？",
-   "haveAccount" : "已有帳戶？"
+   "haveAccount" : "已有帳戶？",
+
+   "firstName" : "名",
+   "lastName" : "姓",
+   "emailAddress" : "電子郵件",
+   "password" : "密碼",
+   "or" : "或者"
 }

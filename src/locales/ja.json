@@ -20,7 +20,8 @@
    "newPassword" : "新しいパスワード",
    "confirmPassword" : "パスワード確認",
    "enterInviteCodeDescription" : "招待コードを入力すると、次回チャージで5時間が60%オフ！",
-   "appleCode" : "コードを適用",
+   "inviteCode" : "招待コード",
+   "applyCode" : "コードを適用",
      
    "signIn" : "ログイン",
    "signUp" : "登録",
@@ -30,5 +31,11 @@
    "continueWithMicrosoft" : "Continue with Microsoft Account",
    "continueWithApple" : "Continue with Apple",
    "haveNotAccount" : "アカウントがないですか？",
-   "haveAccount" : "アカウントがある方はログイン"
+   "haveAccount" : "アカウントがある方はログイン",
+
+   "firstName" : "ファーストネーム",
+   "lastName" : "苗字",
+   "emailAddress" : "電子メールアドレス",
+   "password" : "パスワード",
+   "or" : "または"
 }

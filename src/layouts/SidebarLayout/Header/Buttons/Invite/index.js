@@ -120,13 +120,13 @@ function InviteButton() {
               sx={{p: '0px 4px', color:'black', display: 'flex', alignItems: 'center', borderColor:"black !important", borderRadius:0}}
             > 
               <InputBase
-                sx={{ ml: 1, flex: 1 }}
+                sx={{ ml: 1, flex: 1, color:'black'}}
                 placeholder="Search Google Maps"
                 inputProps={{ 'aria-label': 'search google maps' }}
                 type="text" value={inviteLink} readOnly
               />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions"
+              <IconButton color="primary" sx={{ p: '10px', color: '#000000'}} aria-label="directions"
                 onClick={handleCopyLink}
               >
                 <FileUploadOutlinedIcon />
@@ -136,17 +136,17 @@ function InviteButton() {
           <Box>
             <Typography fontSize={14} fontWeight={400} color="#83848C" mb={1} >{t('shareInviteCode')}</Typography>
             <Paper
-              component="form"
+              component="div"
               sx={{p: '0px 4px', color:'black', display: 'flex', alignItems: 'center', borderColor:"black !important", borderRadius:0}}
             > 
               <InputBase
-                sx={{ ml: 1, flex: 1 }}
+                sx={{ ml: 1, flex: 1, color:'black'}}
                 placeholder="Search Google Maps"
                 inputProps={{ 'aria-label': 'search google maps' }}
                 type="text" value={inviteCode} readOnly
               />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions"
+              <IconButton color="primary" sx={{ p: '10px', color: '#000000'}} aria-label="directions"
                 onClick={handleCopyCode}
               >
                 <FileUploadOutlinedIcon />

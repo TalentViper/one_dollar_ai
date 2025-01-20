@@ -20,7 +20,8 @@
    "newPassword" : "新密码",
    "confirmPassword" : "确认密码",
    "enterInviteCodeDescription" : "输入邀请码, 下次充值享5小时六折优惠!",
-   "appleCode" : "应用代码",
+   "inviteCode" : "邀請碼",
+   "applyCode" : "应用代码",
     
    "signIn" : "登录",
    "signUp" : "注册",
@@ -30,5 +31,11 @@
    "continueWithMicrosoft" : "Continue with Microsoft Account",
    "continueWithApple" : "Continue with Apple",
    "haveNotAccount" : "没有账户",
-   "haveAccount" : "已有账户？" 
+   "haveAccount" : "已有账户？",
+
+   "firstName" : "名",
+   "lastName" : "姓",
+   "emailAddress" : "电子邮件",
+   "password" : "密码",
+   "or" : "或者"
 }

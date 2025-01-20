@@ -11,13 +11,16 @@ import {
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Social from './SocialAuth';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from 'src/contexts/AuthContext';
 
 function Auth() {
+
   const { user, logoutUser } = useAuth(); 
   const [open, setOpen] = useState(false);
 
   const [isSignIn, setIsSignIn] = useState(true);
+  const { t, i18n } = useTranslation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,7 +54,7 @@ function Auth() {
             }}
             fullWidth
             variant="contained" color='primary' size='medium'>
-            Sign In
+            {t("signIn")}
           </Button>
         )
       }
@@ -79,9 +82,9 @@ function Auth() {
           {isSignIn ? (
             <>
               <SignIn modalClose={handleClose} />
-              <Box sx={{ display: 'flex', mb: 2, justifyContent: 'center', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', mb: 2, color:'black', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="body2">
-                  Don't have an account?
+                  {t('haveNotAccount')}
                   &nbsp;
                 </Typography>
                 <Button
@@ -89,16 +92,16 @@ function Auth() {
                   color="primary" size="small"
                   onClick={() => setIsSignIn(!isSignIn)}
                 >
-                  Sign Up
+                  {t('signUp')}
                 </Button>
               </Box>
             </>
           ) : (
             <>
               <SignUp switchSignpage={setIsSignIn} />
-              <Box sx={{ display: 'flex', mb: 2, justifyContent: 'center', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', color: 'black', mb: 2, justifyContent: 'center', alignItems: 'center' }}>
                 <Typography variant="body2">
-                  Already have an account?
+                  {t('haveAccount')}
                   &nbsp;
                 </Typography>
                 <Button
@@ -106,12 +109,12 @@ function Auth() {
                   color="primary" size="small"
                   onClick={() => setIsSignIn(!isSignIn)}
                 >
-                  Login
+                  {t("signIn")}
                 </Button>
               </Box>
             </>
           )}
-          <Divider sx={{ borderColor: 'red !important', mb: 2 }}>OR</Divider>
+          <Divider style={{ background: '#dbdbdb', color:'black', marginBottom: '16px' }}><span>{t("or")}</span></Divider>
 
           <Social isSignIn={isSignIn} modalClose={handleClose} />
         </DialogContent>

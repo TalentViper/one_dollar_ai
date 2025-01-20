@@ -3,21 +3,18 @@ import {
   Avatar,
   Box,
   Button,
-  Divider,
   ListItem,
   TextField,
-  Tooltip,
   Typography,
   Dialog,
   DialogContent,
-  DialogContentText,
   ListItemText,
   ListItemButton
 } from '@mui/material';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
@@ -40,7 +37,9 @@ const default_user = {
   avatar: '/static/images/avatars/4.jpg'
 };
 export default function UserBox() {
+
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
   
   const ref = useRef(null);
@@ -114,27 +113,27 @@ export default function UserBox() {
           }}>
           <Box mb={2}>
             <Typography fontWeight={700} fontSize={30} sx={{ color: 'black' }}>
-              Settings
+              {t('settings')}
             </Typography>
           </Box>
           <Box
             sx={{ flexGrow: 1, color: 'black', display: 'flex', gap: 2, height: 320 }}
           >
             <Box width={180}>
-              <Typography fontSize={20} sx={{ display: 'flex', alignItems: 'center' }}><SettingsIcon />&nbsp;General</Typography>
+              <Typography fontSize={20} sx={{ display: 'flex', alignItems: 'center' }}><SettingsIcon />&nbsp;{t('gerneral')}</Typography>
               <ListItem component="div" disablePadding sx={{ flexDirection: 'column', display: 'flex' }}>
                 <ListItemButton onClick={() => handleTab(1)}>
-                  <ListItemText primary="Change Password" />
+                  <ListItemText primary={t('changePassword')} />
                 </ListItemButton>
                 <ListItemButton onClick={() => handleTab(2)}>
-                  <ListItemText primary="Enter Invite Code" />
+                  <ListItemText primary={t('enterInviteCode')} />
                 </ListItemButton>
               </ListItem>
             </Box>
             {value == 1 ? (
               <Box width={250}>
               <Typography fontSize={20} fontWeight={700} mb={1}>
-                Change Password
+                {t('changePassword')}
               </Typography>
               <Formik
                 initialValues={{ email: '', password: '' }}
@@ -148,7 +147,7 @@ export default function UserBox() {
                       as={TextField}
                       type="password"
                       name="currentPassword"
-                      label="Current Password"
+                      label={t('currentPassword')}
                       fullWidth
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -192,7 +191,7 @@ export default function UserBox() {
                       as={TextField}
                       type="password"
                       name="newPassword"
-                      label="New Password"
+                      label={t('newPassword')}
                       fullWidth
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -236,7 +235,7 @@ export default function UserBox() {
                       as={TextField}
                       type="password"
                       name="confirmPassword"
-                      label="Confirm Password"
+                      label={t('confirmPassword')}
                       fullWidth
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -280,7 +279,7 @@ export default function UserBox() {
                       variant="contained"
                       sx={{ background: '#10a37f', width: '100%', mb: 2, backgroundColor: '#265A9E', color: 'white' }}
                     >
-                      Change Password
+                      {t('changePassword')}
                     </Button>
                   </Form>
                 )}
@@ -289,10 +288,10 @@ export default function UserBox() {
             ) : (
               <Box width={250}>
               <Typography fontSize={20} fontWeight={700} mb={1}>
-                Enter Invite Code
+                {t('enterInviteCode')}
               </Typography>
               <Typography mb={1.5}>
-                Enter your invite code to get 60% off 5 hours on your next top up!
+                {t('enterInviteCodeDescription')}
               </Typography>
               <Formik
                 initialValues={{ email: '', password: '' }}
@@ -306,7 +305,7 @@ export default function UserBox() {
                       as={TextField}
                       type="password"
                       name="inviteCode"
-                      label="Invite Code"
+                      label={t('inviteCode')}
                       fullWidth
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -350,7 +349,7 @@ export default function UserBox() {
                       variant="contained"
                       sx={{ background: '#10a37f', width: '100%', mb: 2, backgroundColor: '#265A9E', color: 'white' }}
                     >
-                      Apply Code
+                      {t('applyCode')}
                     </Button>
                   </Form>
                 )}
