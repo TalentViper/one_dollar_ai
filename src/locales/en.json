@@ -21,7 +21,8 @@
    "newPassword" : "New Password",
    "confirmPassword" : "Confirm Password",
    "enterInviteCodeDescription" : "Enter your invite code to get 60% off 5 hours on your next top up!",
-   "appleCode" : "Apple Code",
+   "inviteCode" : "Invite Code",
+   "applyCode" : "Apple Code",
     
    "signIn" : "Sign In",
    "signUp" : "Sign Up",

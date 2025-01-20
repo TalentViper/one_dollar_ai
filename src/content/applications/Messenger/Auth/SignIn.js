@@ -7,6 +7,7 @@ import {
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { useAuth } from 'src/contexts/AuthContext';
 
@@ -14,6 +15,8 @@ import { useAuth } from 'src/contexts/AuthContext';
 function SignIn(props) {
 
    const { loginUser } = useAuth();
+
+   const { t, i18n } = useTranslation();
 
    const validationSchema = Yup.object().shape({
       email: Yup.string()
@@ -34,7 +37,7 @@ function SignIn(props) {
 
    return (
       < >
-         <Typography mb={1} fontWeight={700} fontSize={24} sx={{ color: '#2d333a' }}>Sign In</Typography>
+         <Typography mb={1} fontWeight={700} fontSize={24} sx={{ color: '#2d333a' }}>{t('signIn')}</Typography>
          <Formik
             initialValues={{ email: '', password: '' }}
             validationSchema={validationSchema}
@@ -46,7 +49,7 @@ function SignIn(props) {
                      size="small"
                      as={TextField}
                      name="email"
-                     label="Email address"
+                     label={t('emailAddress')}
                      fullWidth
                      onChange={handleChange}
                      onBlur={handleBlur}
@@ -95,7 +98,7 @@ function SignIn(props) {
                      size="small"
                      as={TextField}
                      name="password"
-                     label="Password"
+                     label={t("password")}
                      type="password"
                      fullWidth
                      onChange={handleChange}
@@ -146,7 +149,7 @@ function SignIn(props) {
                      variant="contained"
                      sx={{ background: '#10a37f', width: '100%', mb: 2, color: 'white' }}
                   >
-                     Sing In
+                     {t('signIn')}
                   </Button>
                </Form>
             )}
