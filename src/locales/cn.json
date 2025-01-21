@@ -1,10 +1,8 @@
 {
    "welcome": "Welcome to the application!",
    "description": "This is a multi-language React app.",
-   "languages": {
-      "en": "English",
-      "cn": "中文"
-   },
+   
+   "language": "语言",
    "fumanize" : "人性化",
    "new_chat": "新聊天",
    "search" : "搜索",
@@ -25,6 +23,7 @@
     
    "signIn" : "登录",
    "signUp" : "注册",
+   "logOut" : "登出",
    "createAnAccount" : "创建账户 ",
    "continue" : "继续",
    "continueWithGoogle" : "使用 Google 继续",
@@ -37,5 +36,13 @@
    "lastName" : "姓",
    "emailAddress" : "电子邮件",
    "password" : "密码",
-   "or" : "或者"
+   "or" : "或者",
+   
+   "paymentOptions" : "支付选项",
+   "spend" : "花费",
+   "get" : "获得",
+   "topUp" : "充值",
+   "discountCredits" : "折扣积分",
+   "inviteFriendOff" : "邀请1位好友享六折优惠",
+   "use60Off" : "使用六折优惠"
 }

@@ -94,11 +94,10 @@ function Header() {
         }} 
         >
         {/* <HeaderUserbox /> */}
-        <HeaderText />
         <Box
           component="span"
           sx={{
-            ml: 2,
+            mr: 2,
             display: { lg: 'none', xs: 'inline-block' }
           }}
         >
@@ -112,6 +111,7 @@ function Header() {
             </IconButton>
           </Tooltip>
         </Box>
+        <HeaderText />
       </Box>
       <Stack
         sx={{
