@@ -320,7 +320,7 @@ function BottomBarContent(props) {
               },
             }}
           > 
-            <AddPhotoAlternateOutlinedIcon />&nbsp; &nbsp; Attach a sacreenshort
+            <AddPhotoAlternateOutlinedIcon />&nbsp; &nbsp; Attach a screenshort
           </MenuItem>
         </Menu>
       </Box>

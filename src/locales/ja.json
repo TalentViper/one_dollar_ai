@@ -1,10 +1,8 @@
 {
    "welcome": "Welcome to the application!",
    "description": "This is a multi-language React app.",
-   "languages": {
-      "en": "English",
-      "cn": "中文"
-   },
+
+   "language": "言語",
    "fumanize" : "人間らしくする",
    "new_chat": "新しいチャット",
    "search": "検索",
@@ -38,5 +36,13 @@
    "lastName" : "苗字",
    "emailAddress" : "電子メールアドレス",
    "password" : "パスワード",
-   "or" : "または"
+   "or" : "または",
+
+   "paymentOptions" : "支払い方法",
+   "spend" : "使用額",
+   "get" : "獲得",
+   "topUp" : "チャージ",
+   "discountCredits" : "割引クレジット",
+   "inviteFriendOff" : "友達1人を招待すると60%オフ",
+   "use60Off" : "60%オフを利用"
 }

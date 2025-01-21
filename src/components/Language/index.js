@@ -88,12 +88,17 @@ function Language() {
       }}
         fontWeight={400}
         fontSize={16}
-      >Language:</Typography>
+      >{t('language')}:</Typography>
       <Select
-        disabled={!isToogle}
+        // disabled={!isToogle}
         sx={{
           width: '100%',
           mb: 0.5,
+          '&.Mui-disabled': {
+              '& .MuiSelect-select': {
+                WebkitTextFillColor: 'gray'
+              },
+            },
           '& .MuiInputBase-input': {
             display: 'flex',
             py: 0.7

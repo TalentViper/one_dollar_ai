@@ -25,6 +25,7 @@ import {
   Paper,
   ListItemText,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 
@@ -37,6 +38,8 @@ function InviteButton() {
 
   const [inviteLink, setInviteLink] = useState('www.onedollarai.com/invite/');
   const [inviteCode, setInviteCode] = useState('');
+  
+  const currentLang = useSelector((state) => state.setting.language);
 
   const handleOpen = () => {
     setOpen(true);
@@ -67,15 +70,61 @@ function InviteButton() {
     alert('Invite code copied to clipboard!');
   };
 
+  const ButtonContent = (lang) => {
+    switch (lang) {
+      case "en":
+        return (
+          <>
+            <span>Invite a friend</span><br/>
+            <span>Get</span>&nbsp;
+            <span style={{color:'#378DFD'}}>60% off</span>
+          </>
+        )
+      case "cn":
+        return (
+          <>
+            <span>邀请好友享受</span><br/>
+            <span style={{color:'#378DFD'}}>六折优惠</span>
+          </>
+        )
+      case "hk":
+        return (
+          <>
+            <span>邀請好友享受</span><br/>
+            <span style={{color:'#378DFD'}}>六折優惠</span>
+          </>
+        )
+      case "ja":
+        return (
+          <>
+            <span>友達を招待する</span><br/>
+            <span style={{color:'#378DFD'}}>60%オフをゲット</span>
+          </>
+        )
+      default:
+        return (
+          <>
+            <span>Invite a friend</span><br/>
+            <span>Get</span>&nbsp;
+            <span style={{color:'#378DFD'}}>60% off</span>
+          </>
+        )
+        
+    }
+  };
+
 
   return (
     <>
       <Button 
         sx={{
           display:'block',
-          width: '130px',
           color:'#265A9E',
           lineHeight:'18px',
+          fontSize: {
+            xs : 12,
+            md:14,
+          },
           ml: {
             xs: '0px',
             md: '20px',
@@ -93,8 +142,7 @@ function InviteButton() {
           ref={ref}
           onClick={handleOpen}
         >
-          Invite a friend<br/>
-        <span style={{color:'#378DFD'}}>60% off</span>
+          {ButtonContent(currentLang)}
       </Button>
 
       <Dialog

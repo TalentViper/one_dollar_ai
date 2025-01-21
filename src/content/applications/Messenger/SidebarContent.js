@@ -181,7 +181,7 @@ function SidebarContent() {
         </Button>
         <SearchInputWrapper
           value={searchValue}
-          autoFocus
+          // autoFocus
           onChange={handleSearchChange}
           sx={{color : 'black'}}
           InputProps={{
