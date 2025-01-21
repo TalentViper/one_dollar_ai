@@ -114,7 +114,7 @@ function HeaderMenu() {
         onClick={handleOpen}
       >
         <Box display="flex" alignItems="center" color="black">
-          <Typography sx={{ fontSize: 20, fontWeight: 400 }}>{model.label}</Typography>
+          <Typography sx={{ fontSize: {xs:16, md:18}, fontWeight: 400 }}>{model.label}</Typography>
           <ExpandMoreTwoToneIcon fontSize="small" sx={{ pl: 0.3 }} />
         </Box>
       </Button>

@@ -1,10 +1,8 @@
 {
    "welcome": "Welcome to the application!",
    "description": "This is a multi-language React app.",
-   "languages": {
-      "en": "English",
-      "cn": "中文"
-   },
+
+   "language": "言語",
    "fumanize" : "人間らしくする",
    "new_chat": "新しいチャット",
    "search": "検索",
@@ -20,15 +18,31 @@
    "newPassword" : "新しいパスワード",
    "confirmPassword" : "パスワード確認",
    "enterInviteCodeDescription" : "招待コードを入力すると、次回チャージで5時間が60%オフ！",
-   "appleCode" : "コードを適用",
+   "inviteCode" : "招待コード",
+   "applyCode" : "コードを適用",
      
    "signIn" : "ログイン",
    "signUp" : "登録",
+   "logOut" : "ログアウト",
    "createAnAccount" : "アカウント作成",
    "continue" : "続ける",
    "continueWithGoogle" : "Googleで続ける",
    "continueWithMicrosoft" : "Continue with Microsoft Account",
    "continueWithApple" : "Continue with Apple",
    "haveNotAccount" : "アカウントがないですか？",
-   "haveAccount" : "アカウントがある方はログイン"
+   "haveAccount" : "アカウントがある方はログイン",
+
+   "firstName" : "ファーストネーム",
+   "lastName" : "苗字",
+   "emailAddress" : "電子メールアドレス",
+   "password" : "パスワード",
+   "or" : "または",
+
+   "paymentOptions" : "支払い方法",
+   "spend" : "使用額",
+   "get" : "獲得",
+   "topUp" : "チャージ",
+   "discountCredits" : "割引クレジット",
+   "inviteFriendOff" : "友達1人を招待すると60%オフ",
+   "use60Off" : "60%オフを利用"
 }
