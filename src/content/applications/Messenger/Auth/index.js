@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -13,12 +13,14 @@ import SignUp from './SignUp';
 import Social from './SocialAuth';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from 'src/contexts/AuthContext';
+import { useInviteInteraction } from "src/contexts/InviteContext";
 
 function Auth() {
 
   const { user, logoutUser } = useAuth(); 
   const [open, setOpen] = useState(false);
 
+  const { mustSignedInvitedUser } = useInviteInteraction();
   const [isSignIn, setIsSignIn] = useState(true);
   const { t, i18n } = useTranslation();
 
@@ -30,6 +32,12 @@ function Auth() {
   const handleClose = () => {
     setOpen(false);
   }
+
+  useEffect(() => {
+    if (mustSignedInvitedUser) {
+      handleClickOpen()
+    }
+  }, [mustSignedInvitedUser])
 
   return (
     <>
