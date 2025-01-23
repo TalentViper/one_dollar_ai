@@ -7,6 +7,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline } from '@mui/material';
 import ThemeProvider from './theme/ThemeProvider';
 import { AuthProvider } from "src/contexts/AuthContext";
+import { InviteProvider } from 'src/contexts/InviteContext';
 
 function App() {
   const content = useRoutes(router);
@@ -14,10 +15,12 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <CssBaseline />
-          {content}
-        </LocalizationProvider>
+        <InviteProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <CssBaseline />
+            {content}
+          </LocalizationProvider>
+        </InviteProvider>
       </AuthProvider>
     </ThemeProvider>
   );
