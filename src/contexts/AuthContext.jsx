@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { jwtDecode } from "jwt-decode";
 import swal from 'sweetalert2';
 import { getNewAccessTokenWithRefreshToken } from "src/services/authService"
 
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
 
-    const loginUser = async (email, password) => {
+    const loginUser = async (userInfo) => {
         setLoading(true);
         let url = `${process.env.REACT_APP_BACKEND_URL}/api/auth/login/`;
         const response = await fetch(url, {
@@ -28,7 +27,7 @@ export const AuthProvider = ({ children }) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify(userInfo)
         });
         const data = await response.json();
         setLoading(false);
@@ -54,6 +53,16 @@ export const AuthProvider = ({ children }) => {
                 timerProgressBar: true,
                 showConfirmButton: false
             });
+            if (data.message) {
+                swal.fire({
+                    title: data.message,
+                    icon: data.state ? "success" : "error",
+                    timer: 6000,
+                    position: 'center',
+                    timerProgressBar: false,
+                    showConfirmButton: false
+                });
+            }
             return true
         } else {
             console.log("An Error Occured");
@@ -96,6 +105,16 @@ export const AuthProvider = ({ children }) => {
                 timerProgressBar: true,
                 showConfirmButton: false
             });
+            if (resdata.message) {
+                swal.fire({
+                    title: resdata.message,
+                    icon: resdata.state ? "success" : "error",
+                    timer: 6000,
+                    position: 'center',
+                    timerProgressBar: false,
+                    showConfirmButton: false
+                });
+            }
             return true 
         } else {
             console.log(resdata);
@@ -127,12 +146,14 @@ export const AuthProvider = ({ children }) => {
             timer: 6000,
             position: 'bottom-right',
             timerProgressBar: true,
-            showConfirmButton: false
+            showConfirmButton: false,
+            didClose: () => {
+                window.location.href="/api/auth/logout"
+            }
         });
-        window.location.href="api/auth/logout"
     };
 
-    const socialLogin = async (provider, access_token) => {
+    const socialLogin = async (tokenData) => {
     
         try {
             const res = await fetch(
@@ -143,10 +164,7 @@ export const AuthProvider = ({ children }) => {
                         'Content-Type': 'application/json',
                         Accept: 'application/json'
                     },
-                    body: JSON.stringify({
-                        provider,
-                        access_token
-                    })
+                    body: JSON.stringify(tokenData)
                 }
             )
             const jsson = await res.json();
@@ -160,6 +178,19 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('access', jsson.access);
                 localStorage.setItem('refresh', jsson.refresh);
                 localStorage.setItem('user', JSON.stringify(jsson.data))
+
+                console.log(jsson);
+                // and handle invite process
+                if (jsson.message) {
+                    swal.fire({
+                        title: jsson.message,
+                        icon: jsson.state ? "success" : "error",
+                        timer: 6000,
+                        position: 'center',
+                        timerProgressBar: false,
+                        showConfirmButton: false
+                    });
+                }
             }
             return { success: true, message: "success", data: jsson };
         } catch (err) {

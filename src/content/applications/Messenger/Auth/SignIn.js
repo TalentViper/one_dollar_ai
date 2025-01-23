@@ -10,13 +10,12 @@ import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
 import { useAuth } from 'src/contexts/AuthContext';
-
+import { useInviteInteraction } from "src/contexts/InviteContext";
 
 function SignIn(props) {
-
    const { loginUser } = useAuth();
-
-   const { t, i18n } = useTranslation();
+   const { t } = useTranslation();
+   const { inviteCode, mustSignedInvitedUser } = useInviteInteraction();
 
    const validationSchema = Yup.object().shape({
       email: Yup.string()
@@ -28,7 +27,14 @@ function SignIn(props) {
    });
 
    const handleSubmit = async (values) => {
-      loginUser(values.email, values.password).then(res => {
+      const data = {
+         email: values.email, 
+         password: values.password
+      }
+      if (inviteCode && mustSignedInvitedUser) {
+         data.invite_code = inviteCode;
+      }
+      loginUser(data).then(res => {
          if (res) {
             props.modalClose();
          }

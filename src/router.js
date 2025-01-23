@@ -53,6 +53,10 @@ const routes = [
         element: <Messenger />
       },
       {
+        path: '/invite/:code',
+        element: <Messenger />
+      },
+      {
         path: 'overview',
         element: <Navigate to="/" replace />
       },

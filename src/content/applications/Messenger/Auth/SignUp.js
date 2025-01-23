@@ -13,13 +13,13 @@ import { useDispatch } from 'react-redux';
 
 import { useAuth } from "src/contexts/AuthContext";
 import { useTranslation } from 'react-i18next';
-
+import { useInviteInteraction } from "src/contexts/InviteContext";
 
 function SignUp(props) {
-
+   const { inviteCode, mustSignedInvitedUser } = useInviteInteraction();
    const { registerUser } = useAuth()
-   const dispatch = useDispatch();
-   const { t, i18n } = useTranslation();
+   
+   const { t } = useTranslation();
    // Validation schema using Yup
    const validationSchema = Yup.object().shape({
       first_name: Yup.string().required('First Name is required'),
@@ -37,6 +37,9 @@ function SignUp(props) {
    });
 
    const handleSubmit = async (values) => {
+      if (inviteCode && mustSignedInvitedUser) {
+         values.invite_code = inviteCode
+      }
       registerUser(values).then((res) => {
          if (res) {
             props.switchSignpage()

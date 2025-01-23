@@ -16,17 +16,25 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE
 } from "src/actions/types"
+import { useInviteInteraction } from "src/contexts/InviteContext";
 
 const googleAppID = process.env.REACT_APP_GG_APP_ID;
 
 function Auth(props) {
+  const { inviteCode, mustSignedInvitedUser } = useInviteInteraction();
 
   const dispatch = useDispatch();
   const { socialLogin } = useAuth();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleSuccess = async ({provider, data}) => {
-    let response = await socialLogin(provider, data.access_token)
+    const u_data = {
+      provider, access_token: data.access_token
+    }
+    if (inviteCode && mustSignedInvitedUser) {
+      u_data.invite_code = inviteCode
+    }
+    let response = await socialLogin(u_data)
     if (response.success) {
       dispatch({
         type: LOGIN_SUCCESS,
