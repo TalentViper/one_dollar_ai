@@ -6,6 +6,8 @@ import {
   DELETE_CHAT
 } from './types';
 
+import axios from 'axios';
+
 export const setMessages = (data) => async (dispatch) => {
   dispatch({
     type: SET_MESSAGES,
@@ -13,17 +15,16 @@ export const setMessages = (data) => async (dispatch) => {
   });
 };
 
-export const sendMessage = (data) => async (dispatch) => {
+export const sendMessage = (formData) => async (dispatch) => {
+  for (let [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
   try {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/api/chat/`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(data)
+        body : formData
       }
     );
 
@@ -66,6 +67,7 @@ export const sendMessage = (data) => async (dispatch) => {
         k++;
       }
     }
+    
   } catch (error) {
     console.error(error);
     dispatch({

@@ -99,11 +99,20 @@ const chatReducer = (state = initialState, action) => {
 
     case SET_INCREASE_CHAT_ID:
       const newChatId = chatHistory.length > 0 ? chatHistory.length : 0;
+      if(chatHistory.length > 0){
+        const lastChatMessage = chatHistory[(chatHistory.length - 1)].messages
+        if( lastChatMessage.length == 0 ){
+          console.log("last", lastChatMessage.length);
+          return {
+            ...state
+          }
+        }
+      } 
 
       // Create a new chat object with the new ID and an empty messages array
       const newChat = {
         id: newChatId,
-        date: Date.now(),
+        date: "Date.now()",
         messages: []
       };
 
@@ -122,7 +131,8 @@ const chatReducer = (state = initialState, action) => {
 
     case SET_ACTIVECHAT_ID:
       const chatId = action.payload.chatId;
-
+      console.log("sssss", chatId);
+      // if(chatId)
       return {
         ...state,
         activeChatId: action.payload.chatId,
@@ -134,6 +144,8 @@ const chatReducer = (state = initialState, action) => {
       const updated_chatHistory = state.chatHistory.filter(
         (chat) => chat.id !== chat_id
       );
+
+      // saveToLocalStorage(updated_chatHistory);
 
       return {
         ...state,

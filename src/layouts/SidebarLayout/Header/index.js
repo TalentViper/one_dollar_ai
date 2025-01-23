@@ -54,6 +54,7 @@ function Header() {
           xs : '20px 20px 9px 20px',
           md : '20px 20px 20px 20px',
         },
+        zIndex:6,
         boxShadow:
           theme.palette.mode === 'dark'
             ? `0 1px 0 ${alpha(

@@ -303,7 +303,7 @@ export default function UserBox() {
                     <Field
                       size="small"
                       as={TextField}
-                      type="password"
+                      type="text"
                       name="inviteCode"
                       label={t('inviteCode')}
                       fullWidth

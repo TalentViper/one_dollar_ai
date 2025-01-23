@@ -24,20 +24,3 @@ export const setLanguage = (lang) => (dispatch) => {
     payload : {lang}
   })
 }
-
-// export const setActiveChatId = (data) => (dispatch) => {
-//   const { chatId } = data;
-
-//   dispatch({
-//     type: SET_ACTIVECHAT_ID,
-//     payload: { chatId }
-//   });
-// };
-
-// export const deleteChat = (data) => (dispatch) => {
-//   const { chat_id } = data;
-//   dispatch({
-//     type: DELETE_CHAT,
-//     payload: { chat_id }
-//   });
-// };
